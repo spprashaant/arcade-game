@@ -7,8 +7,8 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 0;
-    this.y = 0;
-};
+    this.y = 62;
+ };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -35,8 +35,8 @@ Enemy.prototype.render = function() {
 class Player{
     constructor(){
         this.sprite = 'images/char-boy.png';
-        this.x = 200;
-        this.y = 400;
+        this.x = 2*101;
+        this.y = 5*83;
     }
     update(dt){
     }
