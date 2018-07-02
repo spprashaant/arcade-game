@@ -1,3 +1,8 @@
+let modal = document.getElementById('myModal'); 
+let resetButton = document.getElementsByClassName('reset-button')[0];
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
 // Enemies our player must avoid
 var Enemy = function(row, col) {
     // Variables applied to each of our instances go here,
@@ -55,7 +60,8 @@ class Player{
             this.y -= 83;
             
             if(this.y < 0){
-                this.y = 5*83-30;
+                modal.style.display = "block";
+                //this.y = 5*83-30;
             }
             break;
             case 'right':
@@ -94,4 +100,15 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+resetButton.addEventListener('click', function(){
+    modal.style.display = "none";
+    reset();
 });
