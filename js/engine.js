@@ -92,6 +92,10 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+            //check for collisions
+            if((Math.abs(enemy.x - player.x) <=10) && (Math.abs(enemy.y - player.y) <=10)){
+                reset();
+            }
         });
         player.update();
     }
@@ -161,7 +165,13 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
+        allEnemies.forEach(function(enemy) {
+            enemy.x = enemy.xinit;
+            enemy.y = enemy.yinit;
+        });
         // noop
+        player.x = 2*101;
+        player.y = 5*83-30;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
