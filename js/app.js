@@ -11,6 +11,8 @@ var Enemy = function(row, col) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    //set initial position of the enemies and 
+    // store initial values to use when resetting
     this.xinit = this.x = (col -1)*101;
     this.yinit = this.y = 62 + (row -1)*83;
  };
@@ -21,6 +23,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    //Update the position
     if(this.x > 505){
         this.x = 0;
     }
@@ -47,6 +50,7 @@ class Player{
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
+    // handle the key press events for the player
     handleInput(key){
         switch(key){
             case 'left':
@@ -61,7 +65,6 @@ class Player{
             
             if(this.y < 0){
                 modal.style.display = "block";
-                //this.y = 5*83-30;
             }
             break;
             case 'right':
@@ -73,7 +76,6 @@ class Player{
             break;
             case 'down':
             this.y += 83;
-            console.log(this.y);
             if(this.y > 385){
                 this.y = 83-30;
             }
@@ -85,7 +87,6 @@ class Player{
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
 let allEnemies = [new Enemy(1, 1), new Enemy(2, 5), new Enemy(3,2), new Enemy(3,3)];
 let player = new Player();
 
@@ -107,7 +108,7 @@ document.addEventListener('keyup', function(e) {
 span.onclick = function() {
     modal.style.display = "none";
 }
-
+//reset button on the modal, close and reset
 resetButton.addEventListener('click', function(){
     modal.style.display = "none";
     reset();
