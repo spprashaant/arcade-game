@@ -93,7 +93,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
             //check for collisions
-            if((Math.abs(enemy.x - player.x) <=10) && (Math.abs(enemy.y - player.y) <=10)){
+            //changed the logic to check for box the player is in
+            if((Math.abs(enemy.x - player.x) <=82) && (Math.abs(enemy.y - player.y) <=73))
+            {
                 reset();
             }
         });
@@ -160,19 +162,7 @@ var Engine = (function(global) {
         player.render();
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    function reset() {
-        allEnemies.forEach(function(enemy) {
-            enemy.x = enemy.xinit;
-            enemy.y = enemy.yinit;
-        });
-        // noop
-        player.x = 2*101;
-        player.y = 5*83-30;
-    }
+    
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
